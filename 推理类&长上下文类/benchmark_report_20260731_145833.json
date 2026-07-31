@@ -1,0 +1,168 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:58:33.047723",
+  "results": [
+    {
+      "task_key": "iron_price",
+      "task_name": "推理类 — 铁矿价格套利",
+      "task_type": "reasoning",
+      "success": false,
+      "percentage": 59.0,
+      "turns": 3,
+      "verification": {
+        "task_id": "reasoning_iron_price",
+        "success": false,
+        "total_score": 59,
+        "max_score": 100,
+        "percentage": 59.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_price_prediction": {
+            "score": 19,
+            "max_score": 25,
+            "details": [
+              {
+                "day": 1,
+                "status": "PASS",
+                "expected": 2,
+                "actual": 2
+              },
+              {
+                "day": 2,
+                "status": "PASS",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "day": 3,
+                "status": "PASS",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "day": 4,
+                "status": "FAIL",
+                "expected": 2,
+                "actual": 4
+              }
+            ]
+          },
+          "q2_hoarding_strategy": {
+            "score": 25,
+            "max_score": 25,
+            "details": [
+              {
+                "status": "PASS",
+                "desc": "正确：Day1应采集/囤积铁矿 (匹配2个关键词)"
+              },
+              {
+                "status": "PASS",
+                "desc": "正确识别为高优先级"
+              }
+            ]
+          },
+          "q3_selling_strategy": {
+            "score": 0,
+            "max_score": 30,
+            "details": [
+              {
+                "status": "FAIL",
+                "desc": "Day2: 未卖出（停止开采，等待）"
+              },
+              {
+                "status": "FAIL",
+                "desc": "Day3: 未卖出（停止开采，继续等待）"
+              }
+            ]
+          },
+          "q4_profit_analysis": {
+            "score": 15,
+            "max_score": 20,
+            "details": [
+              {
+                "status": "PARTIAL",
+                "desc": "提到了价差2金币"
+              },
+              {
+                "status": "PASS",
+                "desc": "策略描述完整"
+              }
+            ]
+          }
+        },
+        "diagnostics": [
+          "Q3 卖出策略：GA未能在正确的高价窗口卖出铁矿"
+        ]
+      }
+    },
+    {
+      "task_key": "treasure_hunt",
+      "task_name": "长上下文类 — 民间传闻拼图寻宝",
+      "task_type": "long_context",
+      "success": false,
+      "percentage": 0.0,
+      "turns": 3,
+      "verification": {
+        "task_id": "long_context_treasure_hunt",
+        "success": false,
+        "total_score": 0,
+        "max_score": 100,
+        "percentage": 0.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_signal_detection": {
+            "score": 0,
+            "max_score": 15,
+            "details": [
+              {
+                "field": "valid_days",
+                "status": "MISSING"
+              },
+              {
+                "field": "noise_days",
+                "status": "MISSING"
+              }
+            ]
+          },
+          "q2_item_identification": {
+            "score": 0,
+            "max_score": 35,
+            "details": [
+              {
+                "field": "item_1",
+                "status": "MISSING",
+                "desc": "缺少第1个物品的映射"
+              },
+              {
+                "field": "item_2",
+                "status": "MISSING",
+                "desc": "缺少第2个物品的映射"
+              },
+              {
+                "field": "item_3",
+                "status": "MISSING",
+                "desc": "缺少第3个物品的映射"
+              }
+            ]
+          },
+          "q3_location_deduction": {
+            "score": 0,
+            "max_score": 20,
+            "details": []
+          },
+          "q4_action_plan": {
+            "score": 0,
+            "max_score": 30,
+            "details": []
+          }
+        },
+        "diagnostics": [
+          "Q1 信号识别能力不足：GA 无法从混杂传闻中区分有效线索与噪声",
+          "Q2 物品映射能力不足：GA 无法完成代号→外貌→封印→凹槽→商品的四重映射",
+          "Q3 位置推理能力不足：GA 无法从 Day1 方向 + Day7 坐标推导出 (7,7)",
+          "Q4 行动计划能力不足：GA 不知道需要购买三样物品后使用 detect"
+        ]
+      }
+    }
+  ]
+}

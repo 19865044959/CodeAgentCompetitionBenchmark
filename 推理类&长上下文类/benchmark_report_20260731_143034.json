@@ -1,0 +1,122 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:30:34.568835",
+  "results": [
+    {
+      "task_key": "iron_price",
+      "task_name": "推理类 — 铁矿价格套利",
+      "task_type": "reasoning",
+      "success": true,
+      "percentage": 74.0,
+      "turns": 3,
+      "verification": {
+        "task_id": "reasoning_iron_price",
+        "success": true,
+        "total_score": 74,
+        "max_score": 100,
+        "percentage": 74.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_price_prediction": {
+            "score": 19,
+            "max_score": 25,
+            "details": [
+              {
+                "field": "day1_price",
+                "status": "PASS",
+                "expected": 2,
+                "actual": "2"
+              },
+              {
+                "field": "day2_price",
+                "status": "PASS",
+                "expected": 4,
+                "actual": "4"
+              },
+              {
+                "field": "day3_price",
+                "status": "PASS",
+                "expected": 4,
+                "actual": "4"
+              },
+              {
+                "field": "day4_price",
+                "status": "FAIL",
+                "expected": 2,
+                "actual": "4",
+                "desc": "Day4 价格应为 2（恢复开采，价格回落）"
+              }
+            ]
+          },
+          "q2_hoarding_strategy": {
+            "score": 25,
+            "max_score": 25,
+            "details": [
+              {
+                "field": "day1_action",
+                "status": "PASS",
+                "actual": "collect_iron"
+              },
+              {
+                "field": "day1_priority",
+                "status": "PASS",
+                "actual": "high"
+              },
+              {
+                "field": "reasoning",
+                "status": "PASS",
+                "desc": "推理中包含囤积策略"
+              }
+            ]
+          },
+          "q3_selling_strategy": {
+            "score": 15,
+            "max_score": 30,
+            "details": [
+              {
+                "field": "day2_action",
+                "status": "PASS",
+                "actual": "sell_all_iron"
+              },
+              {
+                "field": "day3_action",
+                "status": "FAIL",
+                "expected": "sell_all_iron",
+                "actual": "do_nothing",
+                "desc": "Day 3 仍是高价窗口，应继续卖出"
+              },
+              {
+                "field": "day4_action",
+                "status": "PASS",
+                "actual": "resume_normal"
+              },
+              {
+                "field": "reasoning",
+                "status": "PARTIAL",
+                "desc": "推理中未明确提到高价窗口"
+              }
+            ]
+          },
+          "q4_profit_analysis": {
+            "score": 15,
+            "max_score": 20,
+            "details": [
+              {
+                "field": "max_profit_per_unit",
+                "status": "PASS",
+                "expected": 2,
+                "actual": 2.0
+              },
+              {
+                "field": "optimal_strategy_summary",
+                "status": "PARTIAL",
+                "desc": "策略总结部分完整 (匹配2个关键词)"
+              }
+            ]
+          }
+        },
+        "diagnostics": []
+      }
+    }
+  ]
+}

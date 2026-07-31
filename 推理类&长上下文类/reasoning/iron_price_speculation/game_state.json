@@ -1,0 +1,72 @@
+{
+  "roundNo": 1,
+  "mapInfo": {
+    "width": 30,
+    "height": 30,
+    "zones": [
+      { "neutralType": "vendor", "pos": { "x": 15, "y": 15 } },
+      { "neutralType": "weaponStore", "pos": { "x": 19, "y": 19 } },
+      { "neutralType": "taskOfficer", "pos": { "x": 11, "y": 11 } },
+      { "neutralType": "iron", "pos": { "x": 25, "y": 10 } },
+      { "neutralType": "iron", "pos": { "x": 8, "y": 28 } },
+      { "neutralType": "stone", "pos": { "x": 4, "y": 24 } },
+      { "neutralType": "stone", "pos": { "x": 14, "y": 3 } },
+      { "neutralType": "copper", "pos": { "x": 22, "y": 26 } },
+      { "neutralType": "copper", "pos": { "x": 7, "y": 2 } },
+      { "neutralType": "water", "pos": { "x": 5, "y": 5 } },
+      { "neutralType": "water", "pos": { "x": 5, "y": 6 } },
+      { "neutralType": "water", "pos": { "x": 6, "y": 5 } }
+    ]
+  },
+  "teamOur": {
+    "type": "challenger",
+    "teamId": "6324",
+    "teamName": "Challenger",
+    "goldNum": 50,
+    "totalScore": 0,
+    "roles": [
+      {
+        "id": 10011, "pos": { "x": 9, "y": 23 },
+        "roleType": "station", "health": 2000, "attackPower": 0, "attackRange": 0
+      },
+      {
+        "id": 10015, "pos": { "x": 10, "y": 20 },
+        "roleType": "worker", "health": 220, "attackPower": 0, "attackRange": 0,
+        "backPackCapability": 100, "backpack": []
+      },
+      {
+        "id": 10016, "pos": { "x": 9, "y": 21 },
+        "roleType": "worker", "health": 220, "attackPower": 0, "attackRange": 0,
+        "backPackCapability": 100, "backpack": []
+      },
+      {
+        "id": 10017, "pos": { "x": 10, "y": 22 },
+        "roleType": "pioneer", "health": 200, "attackPower": 0, "attackRange": 0,
+        "backPackCapability": 40, "backpack": []
+      }
+    ]
+  },
+  "teamEnemy": {
+    "roles": [
+      {
+        "id": 20011, "pos": { "x": 20, "y": 9 },
+        "roleType": "station", "health": 2000, "attackPower": 0, "attackRange": 0
+      }
+    ]
+  },
+  "beast": { "roles": [] },
+  "phaseTask": null,
+  "lastRoundRoleActionResults": {},
+  "llmResp": "",
+  "worldNews": {
+    "officialNews": "矿业管理局紧急通报：北部铁矿区昨夜发生严重矿井塌方事故，主巷道结构受损，部分作业面被掩埋。安全监察部门已下达通知：为保障矿工安全，矿区将于明日全面停工，进行巷道加固和主矿脉修复。矿区领班表示：'今天浅层矿面还能抢采一些，明天的全面停工不可避免。'工程队评估：类似规模的塌方事故，修复工程通常需要2天左右才能完成并恢复开采。",
+    "folkLegends": ""
+  },
+  "vendorShopList": [
+    { "name": "stone", "price": 1 },
+    { "name": "iron", "price": 2 },
+    { "name": "copper", "price": 3 }
+  ],
+  "weaponShopList": "",
+  "errors": []
+}

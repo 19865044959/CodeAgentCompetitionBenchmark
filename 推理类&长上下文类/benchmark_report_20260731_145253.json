@@ -1,0 +1,18 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:52:53.387139",
+  "results": [
+    {
+      "task_key": "iron_price",
+      "task_name": "推理类 — 铁矿价格套利",
+      "task_type": "reasoning",
+      "success": false,
+      "percentage": 0,
+      "turns": 3,
+      "verification": {
+        "success": false,
+        "error": "Expecting value: line 1 column 1 (char 0)"
+      }
+    }
+  ]
+}

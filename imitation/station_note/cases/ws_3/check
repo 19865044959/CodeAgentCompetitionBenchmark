@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""check — 验证 work/out.csv 是否与标准成品一致。"""
+
+import os
+import sys
+import hashlib
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+EXPECTED_MD5 = "f9fd09efd173bd2dca4024a9bd0c60f0"
+TOKEN = "f9fd09efd173"
+
+def main():
+    out_path = "work/out.csv"
+    if not os.path.isfile(out_path):
+        print("[FAIL] 未找到 work/out.csv，请先生成输出文件。")
+        sys.exit(1)
+
+    actual = open(out_path, "rb").read()
+    actual_md5 = hashlib.md5(actual).hexdigest()
+
+    if actual_md5 != EXPECTED_MD5:
+        print("[FAIL] CSV 内容与标准成品不一致。")
+        print(f"  期望 MD5: {EXPECTED_MD5}")
+        print(f"  实际 MD5: {actual_md5}")
+        print()
+        print("  提示：请检查样板的转换规则是否全部正确应用：")
+        print("  - 列的增删和重命名")
+        print("  - 日期格式转换")
+        print("  - 金额计算公式和精度")
+        print("  - 缺失数量处理")
+        print("  - 排序依据和稳定性")
+        print("  - 合计行的标签和求和")
+        print("  - 文件编码(UTF-8)和换行(LF)")
+        sys.exit(1)
+
+    print("[ OK ] work/out.csv 与标准成品一致，全部通过！")
+    print(f"TOKEN: {TOKEN}")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,9 @@
+{
+  "station": "北京气象站",
+  "year": "2024年",
+  "avg_temp": 13.5,
+  "avg_aqi": 78,
+  "highest_avg_temp_month": "7月",
+  "best_aqi_month": "7月",
+  "total_rain_days": 76
+}

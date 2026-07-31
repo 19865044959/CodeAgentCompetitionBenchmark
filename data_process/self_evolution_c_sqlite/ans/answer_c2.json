@@ -1,0 +1,25 @@
+{
+  "year": "2023",
+  "top3_roads": [
+    {
+      "rank": 1,
+      "road_name": "三环路",
+      "violation_count": 6,
+      "total_fine": 1000
+    },
+    {
+      "rank": 2,
+      "road_name": "长安街",
+      "violation_count": 4,
+      "total_fine": 1400
+    },
+    {
+      "rank": 3,
+      "road_name": "回龙观大街",
+      "violation_count": 3,
+      "total_fine": 800
+    }
+  ],
+  "total_violations_2023": 17,
+  "total_fine_2023": 4200
+}

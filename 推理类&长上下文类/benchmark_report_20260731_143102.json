@@ -1,0 +1,229 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:31:02.773511",
+  "results": [
+    {
+      "task_key": "treasure_hunt",
+      "task_name": "长上下文类 — 民间传闻拼图寻宝",
+      "task_type": "long_context",
+      "success": true,
+      "percentage": 98.0,
+      "turns": 3,
+      "verification": {
+        "task_id": "long_context_treasure_hunt",
+        "success": true,
+        "total_score": 98,
+        "max_score": 100,
+        "percentage": 98.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_signal_detection": {
+            "score": 15,
+            "max_score": 15,
+            "details": [
+              {
+                "field": "valid_days",
+                "status": "PASS",
+                "expected": [
+                  1,
+                  3,
+                  5,
+                  7
+                ],
+                "actual": [
+                  1,
+                  3,
+                  5,
+                  7
+                ]
+              },
+              {
+                "field": "noise_days",
+                "status": "PASS",
+                "expected": [
+                  2,
+                  4,
+                  6
+                ],
+                "actual": [
+                  2,
+                  4,
+                  6
+                ]
+              },
+              {
+                "field": "reasoning",
+                "status": "PASS"
+              }
+            ]
+          },
+          "q2_item_identification": {
+            "score": 33,
+            "max_score": 35,
+            "details": [
+              {
+                "field": "item_1.weapon_shop_item",
+                "status": "PASS",
+                "actual": "古符石板"
+              },
+              {
+                "field": "item_1.price",
+                "status": "PASS",
+                "actual": 15
+              },
+              {
+                "field": "item_1.day1_code_name",
+                "status": "PASS",
+                "actual": "言者石"
+              },
+              {
+                "field": "item_1.day3_appearance",
+                "status": "PASS",
+                "actual": "灰白色、上面刻着歪歪扭扭字儿的石板"
+              },
+              {
+                "field": "item_1.day5_seal_name",
+                "status": "PASS",
+                "actual": "真言之印"
+              },
+              {
+                "field": "item_1.day7_slot_shape",
+                "status": "PASS",
+                "actual": "方方正正的浅槽，刚好能嵌进一块石板"
+              },
+              {
+                "field": "item_2.weapon_shop_item",
+                "status": "PASS",
+                "actual": "星辰之沙"
+              },
+              {
+                "field": "item_2.price",
+                "status": "PASS",
+                "actual": 20
+              },
+              {
+                "field": "item_2.day1_code_name",
+                "status": "PASS",
+                "actual": "光之尘"
+              },
+              {
+                "field": "item_2.day3_appearance",
+                "status": "PASS",
+                "actual": "银白色的粉末，摸起来凉丝丝的，在黑处自己会发光"
+              },
+              {
+                "field": "item_2.day5_seal_name",
+                "status": "PASS",
+                "actual": "明光之印"
+              },
+              {
+                "field": "item_2.day7_slot_shape",
+                "status": "PASS",
+                "actual": "圆形的浅碟状，像用来盛放粉末的"
+              },
+              {
+                "field": "item_3.weapon_shop_item",
+                "status": "PASS",
+                "actual": "烈焰之息"
+              },
+              {
+                "field": "item_3.price",
+                "status": "PASS",
+                "actual": 25
+              },
+              {
+                "field": "item_3.day1_code_name",
+                "status": "PASS",
+                "actual": "焚之心"
+              },
+              {
+                "field": "item_3.day3_appearance",
+                "status": "PASS",
+                "actual": "水晶瓶子，里头封着一团橙红色的雾，晃一晃还会自己亮"
+              },
+              {
+                "field": "item_3.day5_seal_name",
+                "status": "PASS",
+                "actual": "焚天之印"
+              },
+              {
+                "field": "item_3.day7_slot_shape",
+                "status": "PASS",
+                "actual": "小孔，孔壁有烧焦的痕迹"
+              },
+              {
+                "field": "reasoning",
+                "status": "PASS",
+                "desc": "推理包含跨天串联逻辑"
+              }
+            ]
+          },
+          "q3_location_deduction": {
+            "score": 20,
+            "max_score": 20,
+            "details": [
+              {
+                "field": "target_x",
+                "status": "PASS",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "field": "target_y",
+                "status": "PASS",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "field": "reasoning",
+                "status": "PASS",
+                "desc": "使用 Day1 + Day7 双重确认位置"
+              }
+            ]
+          },
+          "q4_action_plan": {
+            "score": 30,
+            "max_score": 30,
+            "details": [
+              {
+                "field": "required_items",
+                "status": "PASS",
+                "actual": [
+                  "古符石板",
+                  "星辰之沙",
+                  "烈焰之息"
+                ]
+              },
+              {
+                "field": "total_gold_needed",
+                "status": "PASS",
+                "actual": 60
+              },
+              {
+                "field": "final_action",
+                "status": "PASS",
+                "actual": "detect"
+              },
+              {
+                "field": "required_role",
+                "status": "PASS",
+                "actual": "pioneer"
+              },
+              {
+                "field": "action_sequence",
+                "status": "PASS",
+                "checks": {
+                  "buy": true,
+                  "move_to_store": true,
+                  "move_to_target": true,
+                  "detect": true
+                }
+              }
+            ]
+          }
+        },
+        "diagnostics": []
+      }
+    }
+  ]
+}

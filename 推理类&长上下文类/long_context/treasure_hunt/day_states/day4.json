@@ -1,0 +1,12 @@
+{
+  "roundNo": 391,
+  "worldNews": {
+    "officialNews": "",
+    "folkLegends": "矿区治安最近不太好，据说有人半夜偷矿。据说还闹到衙门去了。"
+  },
+  "vendorShopList": [
+    { "name": "stone", "price": 1 },
+    { "name": "iron", "price": 2 },
+    { "name": "copper", "price": 3 }
+  ]
+}

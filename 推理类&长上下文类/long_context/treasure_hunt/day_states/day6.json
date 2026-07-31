@@ -1,0 +1,12 @@
+{
+  "roundNo": 651,
+  "worldNews": {
+    "officialNews": "",
+    "folkLegends": "最近村里来了个云游诗人，在酒馆里说书换酒喝，讲的都是些英雄救美的老套故事。倒是吸引了不少小孩围着听。"
+  },
+  "vendorShopList": [
+    { "name": "stone", "price": 1 },
+    { "name": "iron", "price": 2 },
+    { "name": "copper", "price": 3 }
+  ]
+}

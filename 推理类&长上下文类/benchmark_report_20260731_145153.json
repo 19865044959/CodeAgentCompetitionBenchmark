@@ -1,0 +1,83 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:51:53.661684",
+  "results": [
+    {
+      "task_key": "iron_price",
+      "task_name": "推理类 — 铁矿价格套利",
+      "task_type": "reasoning",
+      "success": false,
+      "percentage": 30.0,
+      "turns": 5,
+      "verification": {
+        "task_id": "reasoning_iron_price",
+        "success": false,
+        "total_score": 30,
+        "max_score": 100,
+        "percentage": 30.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_price_prediction": {
+            "score": 0,
+            "max_score": 25,
+            "details": [
+              {
+                "day": 1,
+                "status": "NOT_FOUND",
+                "expected": 2
+              },
+              {
+                "day": 2,
+                "status": "NOT_FOUND",
+                "expected": 4
+              },
+              {
+                "day": 3,
+                "status": "NOT_FOUND",
+                "expected": 4
+              },
+              {
+                "day": 4,
+                "status": "NOT_FOUND",
+                "expected": 2
+              }
+            ]
+          },
+          "q2_hoarding_strategy": {
+            "score": 20,
+            "max_score": 25,
+            "details": [
+              {
+                "status": "PASS",
+                "desc": "正确：Day1应采集/囤积铁矿"
+              }
+            ]
+          },
+          "q3_selling_strategy": {
+            "score": 0,
+            "max_score": 30,
+            "details": []
+          },
+          "q4_profit_analysis": {
+            "score": 10,
+            "max_score": 20,
+            "details": [
+              {
+                "status": "PASS",
+                "desc": "额外利润正确：40"
+              },
+              {
+                "status": "FAIL",
+                "desc": "策略描述不完整"
+              }
+            ]
+          }
+        },
+        "diagnostics": [
+          "Q1 价格预测：GA未能正确识别停工导致的价格变化时间线",
+          "Q3 卖出策略：GA未能在正确的高价窗口卖出铁矿"
+        ]
+      }
+    }
+  ]
+}

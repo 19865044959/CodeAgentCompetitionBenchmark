@@ -1,0 +1,92 @@
+{
+  "title": "推理类 & 长上下文类 Benchmark 评测报告",
+  "timestamp": "2026-07-31T14:55:57.768602",
+  "results": [
+    {
+      "task_key": "iron_price",
+      "task_name": "推理类 — 铁矿价格套利",
+      "task_type": "reasoning",
+      "success": false,
+      "percentage": 38.0,
+      "turns": 4,
+      "verification": {
+        "task_id": "reasoning_iron_price",
+        "success": false,
+        "total_score": 38,
+        "max_score": 100,
+        "percentage": 38.0,
+        "passing_threshold": 70,
+        "questions": {
+          "q1_price_prediction": {
+            "score": 0,
+            "max_score": 25,
+            "details": [
+              {
+                "day": 1,
+                "status": "NOT_FOUND",
+                "expected": 2
+              },
+              {
+                "day": 2,
+                "status": "NOT_FOUND",
+                "expected": 4
+              },
+              {
+                "day": 3,
+                "status": "NOT_FOUND",
+                "expected": 4
+              },
+              {
+                "day": 4,
+                "status": "NOT_FOUND",
+                "expected": 2
+              }
+            ]
+          },
+          "q2_hoarding_strategy": {
+            "score": 15,
+            "max_score": 25,
+            "details": [
+              {
+                "status": "PARTIAL",
+                "desc": "提到采集但也提到卖出，策略不明确"
+              },
+              {
+                "status": "PASS",
+                "desc": "正确识别为高优先级"
+              }
+            ]
+          },
+          "q3_selling_strategy": {
+            "score": 8,
+            "max_score": 30,
+            "details": [
+              {
+                "status": "PARTIAL",
+                "desc": "在涨价时卖出，但Day2/3区分不明确"
+              }
+            ]
+          },
+          "q4_profit_analysis": {
+            "score": 15,
+            "max_score": 20,
+            "details": [
+              {
+                "status": "PASS",
+                "desc": "额外利润正确：40"
+              },
+              {
+                "status": "PARTIAL",
+                "desc": "策略描述基本完整"
+              }
+            ]
+          }
+        },
+        "diagnostics": [
+          "Q1 价格预测：GA未能正确识别停工导致的价格变化时间线",
+          "Q3 卖出策略：GA未能在正确的高价窗口卖出铁矿"
+        ]
+      }
+    }
+  ]
+}

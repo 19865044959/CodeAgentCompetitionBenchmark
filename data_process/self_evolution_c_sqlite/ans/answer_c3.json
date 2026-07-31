@@ -1,0 +1,47 @@
+{
+  "year": "2024",
+  "district_stats": [
+    {
+      "district": "东城区",
+      "violation_count": 3,
+      "accident_count": 1,
+      "total_injured": 3
+    },
+    {
+      "district": "大兴区",
+      "violation_count": 0,
+      "accident_count": 0,
+      "total_injured": 0
+    },
+    {
+      "district": "昌平区",
+      "violation_count": 0,
+      "accident_count": 1,
+      "total_injured": 0
+    },
+    {
+      "district": "朝阳区",
+      "violation_count": 10,
+      "accident_count": 4,
+      "total_injured": 8
+    },
+    {
+      "district": "海淀区",
+      "violation_count": 3,
+      "accident_count": 1,
+      "total_injured": 0
+    },
+    {
+      "district": "西城区",
+      "violation_count": 5,
+      "accident_count": 1,
+      "total_injured": 1
+    },
+    {
+      "district": "通州区",
+      "violation_count": 2,
+      "accident_count": 2,
+      "total_injured": 3
+    }
+  ]
+}

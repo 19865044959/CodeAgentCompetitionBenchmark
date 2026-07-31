@@ -1,0 +1,9 @@
+{
+  "district": "朝阳区",
+  "year": "2024年",
+  "avg_congestion_index": 7.2,
+  "total_roads": 156,
+  "most_congested_road": "三环路朝阳段",
+  "highest_peak_speed_road": "机场高速",
+  "roads_count": 5
+}

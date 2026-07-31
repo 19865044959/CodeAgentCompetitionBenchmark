@@ -1,0 +1,12 @@
+{
+  "roundNo": 131,
+  "worldNews": {
+    "officialNews": "",
+    "folkLegends": "东边林场的伐木工说最近夜里老听见狼嚎，而且声音越来越近。村里组织了巡逻队，今晚开始值夜。"
+  },
+  "vendorShopList": [
+    { "name": "stone", "price": 1 },
+    { "name": "iron", "price": 2 },
+    { "name": "copper", "price": 3 }
+  ]
+}

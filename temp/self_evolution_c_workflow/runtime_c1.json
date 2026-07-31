@@ -1,0 +1,10 @@
+{
+  "task": "C-1",
+  "station": "北岭哨站",
+  "model": "R-700",
+  "coordinate": "N31.2,E121.5",
+  "freq_seed": 94,
+  "auth_code": "AUTH-C1-A7K2",
+  "ack": "ACK-C1-P9M4",
+  "done_code": "DONE-C1-R6T8"
+}

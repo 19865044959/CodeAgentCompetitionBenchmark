@@ -1,0 +1,19 @@
+{
+  "task": "C-1",
+  "execution": [
+    {"step": "power", "request": {"model": "R-700", "voltage": 12.0}},
+    {"step": "seed", "response": {"freq_seed": 94}},
+    {"step": "tune", "request": {"freq": 168.0}},
+    {"step": "auth", "response": {"code": "AUTH-C1-A7K2"}},
+    {
+      "step": "transmit",
+      "request": {"code": "AUTH-C1-A7K2", "coord": "N31.2,E121.5"},
+      "response": {"ack": "ACK-C1-P9M4"}
+    },
+    {
+      "step": "log",
+      "request": {"ack": "ACK-C1-P9M4"},
+      "response": {"done_code": "DONE-C1-R6T8"}
+    }
+  ]
+}

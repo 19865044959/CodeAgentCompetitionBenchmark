@@ -1,0 +1,25 @@
+{
+  "year": "2024",
+  "top3_roads": [
+    {
+      "rank": 1,
+      "road_name": "三环路",
+      "violation_count": 5,
+      "total_fine": 1300
+    },
+    {
+      "rank": 2,
+      "road_name": "西直门桥",
+      "violation_count": 4,
+      "total_fine": 1300
+    },
+    {
+      "rank": 3,
+      "road_name": "中关村大街",
+      "violation_count": 3,
+      "total_fine": 800
+    }
+  ],
+  "total_violations_2024": 23,
+  "total_fine_2024": 5900
+}
