@@ -1,0 +1,134 @@
+{
+  "project": "数据库查询",
+  "name": "数据库查询（中文SQLite）",
+  "model": "Qwen3.6-27B",
+  "model_id": "qwen3.6-27b",
+  "timestamp": "2026-08-10T15:28:49.979921",
+  "note": "评测模式: REPL (同一进程顺序执行3个任务)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_c1.md",
+      "name": "2024年违章",
+      "success": true,
+      "turns": 5,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "读取文件了解任务内容",
+          "phase": "读题"
+        },
+        {
+          "num": 2,
+          "summary": "探索 traffic.db 数据库结构",
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "探索数据库结构：连接traffic.db，查看表名和列信息",
+          "phase": "探索"
+        },
+        {
+          "num": 4,
+          "summary": "读取文件了解任务内容",
+          "phase": "探索"
+        },
+        {
+          "num": 5,
+          "summary": "任务完成：answer_c1.json 已生成并验证",
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_c2.md",
+      "name": "2023年违章",
+      "success": true,
+      "turns": 4,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "读取文件了解任务内容",
+          "phase": "读题"
+        },
+        {
+          "num": 2,
+          "summary": "探索数据库结构：连接traffic.db，查看表名和列信息",
+          "phase": "复用"
+        },
+        {
+          "num": 3,
+          "summary": "读取文件了解任务内容",
+          "phase": "复用"
+        },
+        {
+          "num": 4,
+          "summary": "任务完成：answer_c2.json 已生成并验证",
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_c3.md",
+      "name": "跨表JOIN统计",
+      "success": true,
+      "turns": 5,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "读取文件了解任务内容",
+          "phase": "读题"
+        },
+        {
+          "num": 2,
+          "summary": "按区域统计2024年违章+事故，生成 answer_c3.json",
+          "phase": "复用"
+        },
+        {
+          "num": 3,
+          "summary": "读取文件了解任务内容",
+          "phase": "复用"
+        },
+        {
+          "num": 4,
+          "summary": "读取文件了解任务内容",
+          "phase": "复用"
+        },
+        {
+          "num": 5,
+          "summary": "task_c4.md 不存在，等待用户指示",
+          "phase": "通过"
+        }
+      ]
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 5,
+    "t2_turns": 4,
+    "t3_turns": 5,
+    "reduction_t2_vs_t1_pct": 20,
+    "reduction_t3_vs_t1_pct": 0,
+    "shows_evolution": true,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 5,
+        "score": 80.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 4,
+        "score": 5.0
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 5,
+        "score": 4.0
+      }
+    },
+    "total": "89.0/60"
+  }
+}

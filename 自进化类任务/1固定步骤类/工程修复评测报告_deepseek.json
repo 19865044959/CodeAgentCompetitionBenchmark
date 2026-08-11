@@ -1,0 +1,209 @@
+{
+  "project": "工程修复",
+  "name": "工程修复（运维部署修复）",
+  "model": "DeepSeek V4 Pro",
+  "model_id": "deepseek",
+  "timestamp": "2026-08-11T17:02:52.446031",
+  "note": "评测模式: REPL",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1_alpha.md",
+      "name": "alpha应用",
+      "success": true,
+      "turns": 13,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "读取任务文件了解需求",
+          "phase": "读题"
+        },
+        {
+          "num": 2,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 4,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 5,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 6,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 7,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 8,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 9,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 10,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 11,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 12,
+          "summary": "",
+          "phase": "探索"
+        },
+        {
+          "num": 13,
+          "summary": "",
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_2_beta.md",
+      "name": "beta应用",
+      "success": true,
+      "turns": 9,
+      "turns_detail": [
+        {
+          "num": 14,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "读题"
+        },
+        {
+          "num": 15,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 16,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 17,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 18,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 1,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 2,
+          "summary": "B-2任务，工作区ws_2，重置工作记忆并读spec",
+          "phase": "复用"
+        },
+        {
+          "num": 3,
+          "summary": "读spec/conf/sh，确认4处问题，检查check规则",
+          "phase": "复用"
+        },
+        {
+          "num": 4,
+          "summary": "",
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_3_gamma.md",
+      "name": "gamma应用",
+      "success": true,
+      "turns": 7,
+      "turns_detail": [
+        {
+          "num": 5,
+          "summary": "B-3工作区ws_3，确认spec、conf、sh，执行修复并WSL验证",
+          "phase": "读题"
+        },
+        {
+          "num": 6,
+          "summary": "B-3工作区ws_3，确认spec、conf、sh，执行修复并WSL验证",
+          "phase": "复用"
+        },
+        {
+          "num": 7,
+          "summary": "B-3工作区ws_3，确认spec、conf、sh，执行修复并WSL验证",
+          "phase": "复用"
+        },
+        {
+          "num": 1,
+          "summary": "B-3工作区ws_3，确认spec、conf、sh，执行修复并WSL验证",
+          "phase": "复用"
+        },
+        {
+          "num": 2,
+          "summary": "B-3工作区ws_3，确认spec、conf、sh，执行修复并WSL验证",
+          "phase": "复用"
+        },
+        {
+          "num": 3,
+          "summary": "",
+          "phase": "复用"
+        },
+        {
+          "num": 4,
+          "summary": "",
+          "phase": "通过"
+        }
+      ]
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 13,
+    "t2_turns": 9,
+    "t3_turns": 7,
+    "reduction_t2_vs_t1_pct": 31,
+    "reduction_t3_vs_t1_pct": 46,
+    "shows_evolution": true,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 13,
+        "score": 30.8
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 9,
+        "score": 2.2
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 7,
+        "score": 2.9
+      }
+    },
+    "total": "35.9/60"
+  }
+}

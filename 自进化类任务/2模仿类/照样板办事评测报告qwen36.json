@@ -1,0 +1,94 @@
+{
+  "project": "照样板办事",
+  "name": "照样板办事（账册整理）",
+  "timestamp": "2026-08-10T11:20:00",
+  "note": "实际 GA 运行数据（qwen3.6-27B）— 重构后（samples共享 + spec强调规则一致）；目录已扁平化，cases/ 去除",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1.md",
+      "name": "灰雀驿站",
+      "success": true,
+      "token": "86b640acad78",
+      "turns": 15,
+      "turns_detail": [
+        {"num": 1, "summary": "读取 task_1.md，理解任务：据 samples 样板归纳规则，处理 work/in_1.csv，用 ./check1 验证", "phase": "读题"},
+        {"num": 2, "summary": "列出目录结构，确认 samples/work/check1 均存在", "phase": "读题"},
+        {"num": 3, "summary": "读取 samples/in_1.csv、out_1.csv、in_2.csv、out_2.csv 两组样板", "phase": "探索"},
+        {"num": 4, "summary": "对比两组 in/out，归纳初步规则：6列、日期补零、金额×单价", "phase": "探索"},
+        {"num": 5, "summary": "读取 work/in_1.csv 待处理数据", "phase": "探索"},
+        {"num": 6, "summary": "生成第一版 out_1.csv（Decimal ROUND_HALF_UP，按站点+编号排序）", "phase": "尝试"},
+        {"num": 7, "summary": "检查 out_1 内容，运行 ./check1 → 报错：check 是 python 脚本非可执行文件", "phase": "验证失败"},
+        {"num": 8, "summary": "读取 check1，得知用 MD5 比对（期望 86b640acad78...）", "phase": "读验证"},
+        {"num": 9, "summary": "计算 out_1 MD5 → 不匹配；换行已确认 LF，排除编码换行问题", "phase": "调试"},
+        {"num": 10, "summary": "尝试 stable 按站点排序（保持组内输入顺序），MD5 不变，排除排序为主因", "phase": "调试"},
+        {"num": 11, "summary": "暴力枚举舍入方式（HALF_UP/HALF_EVEN/FLOOR/CEIL）均不匹配，怀疑结构差异", "phase": "调试"},
+        {"num": 12, "summary": "用 samples/in_1→out_1 交叉对拍，发现合计行空列数错误：应为中间空3列(合计,,,,数量,总价)而非4列", "phase": "调试"},
+        {"num": 13, "summary": "修正合计行格式，重新生成 → 样板1/样板2 全匹配，out_1 MD5=86b640... 命中！", "phase": "通过"},
+        {"num": 14, "summary": "读取 check2/check3 确认题2题3期望 MD5", "phase": "读验证"},
+        {"num": 15, "summary": "确认三题全部命中期望 MD5，task1 完成", "phase": "总结"}
+      ],
+      "key_rules_discovered": [
+        "字段精简：去掉备注、录入人，保留6列",
+        "日期格式：2026/7/3 → 2026-07-03（零填充）",
+        "数量缺失 → 0",
+        "总价 = 数量 × 单价，Decimal ROUND_HALF_UP 保留2位",
+        "排序：按站点升序(stable)，同一站点保持输入相对顺序",
+        "末尾追加合计行：编号=合计，中间空3列，数量和总价求和"
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_2.md",
+      "name": "柳莺驿站",
+      "success": true,
+      "token": "36e927cb97b8",
+      "turns": 4,
+      "turns_detail": [
+        {"num": 1, "summary": "读取 task_2.md，确认「规则与题1完全相同」，无需重新分析样板", "phase": "读题"},
+        {"num": 2, "summary": "读取 work/in_2.csv（T-xxx 数据，东站/南站/西站）", "phase": "读数据"},
+        {"num": 3, "summary": "复用题1处理脚本，改输入输出路径生成 out_2.csv", "phase": "复用"},
+        {"num": 4, "summary": "验证 out_2 MD5=36e927... 与 check2 期望一致 → PASS！TOKEN: 36e927cb97b8", "phase": "通过"}
+      ],
+      "reuse_evidence": "Agent 复用题1已归纳脚本，仅改路径即通过，未再分析样板"
+    },
+    {
+      "task": 3,
+      "task_file": "task_3.md",
+      "name": "松鸦驿站",
+      "success": true,
+      "token": "f9fd09efd173",
+      "turns": 4,
+      "turns_detail": [
+        {"num": 1, "summary": "读取 task_3.md，确认规则不变", "phase": "读题"},
+        {"num": 2, "summary": "读取 work/in_3.csv（S-xxx 数据，中站/北站）", "phase": "读数据"},
+        {"num": 3, "summary": "复用题1脚本，改输入输出路径生成 out_3.csv", "phase": "复用"},
+        {"num": 4, "summary": "验证 out_3 MD5=f9fd09... 与 check3 期望一致 → PASS！TOKEN: f9fd09efd173", "phase": "通过"}
+      ],
+      "reuse_evidence": "继续复用题1脚本，仅改路径即通过"
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 15,
+    "t2_turns": 4,
+    "t3_turns": 4,
+    "reduction_t2_vs_t1_pct": 76,
+    "reduction_t3_vs_t1_pct": 76,
+    "shows_evolution": true,
+    "evolution_quality": "excellent",
+    "key_factors": [
+      "samples 通过共享样板，避免重复拷贝混淆",
+      "ws_2/ws_3 的 spec.md 明确强调「规则与题1完全相同」",
+      "Agent 在题1中编写了可复用的 Python 脚本并用样板交叉对拍验证",
+      "题2/题3 Agent 直接复用题1脚本，仅改路径即通过",
+      "关键发现：合计行中间空3列，用样板对拍定位而非直接猜 MD5"
+    ],
+    "scores": {
+      "task1": {"exp": 20, "actual": 17, "score": 20.0},
+      "task2": {"exp": 1, "actual": 4, "score": 5.0},
+      "task3": {"exp": 1, "actual": 4, "score": 5.0},
+      "total": "30.0/60"
+    }
+  }
+}
