@@ -9,6 +9,7 @@ EXPECTED_MD5 = "36e927cb97b80a1da56ee15c59acb348"
 TOKEN = "36e927cb97b8"
 
 def main():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     out_path = "work/out_2.csv"
     if not os.path.isfile(out_path):
         print("[FAIL] 未找到 work/out_2.csv，请先生成输出文件。")

@@ -1,0 +1,173 @@
+{
+  "project": "unknown_api",
+  "name": "未知API",
+  "model": "Qwen3.5-35B-A3B",
+  "model_id": "qwen3.5-35b-a3b",
+  "timestamp": "2026-08-14T00:18:40.783876",
+  "note": "评测模式: REPL (GA cwd=/tmp/自进化类任务/1固定步骤类/1未知API)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1_beijing.md",
+      "name": "查询北京文化遗产",
+      "success": false,
+      "turns": 10,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "已读取任务文件，需要查阅 API_DOCS.md 并调用本地 API (http://localhost:8899) 获取北京文化遗产数据。",
+          "tools": [
+            "file_read"
+          ],
+          "phase": "读题"
+        },
+        {
+          "num": 2,
+          "summary": "API 文档已读取，需要编写 Python 脚本调用本地 API 获取北京文化遗产数据并进行统计。",
+          "tools": [
+            "file_write"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "脚本已创建，现在需要运行它来查询北京文化遗产数据并生成统计结果。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "复用"
+        },
+        {
+          "num": 4,
+          "summary": "API 返回 401 未授权，需要检查实际返回的错误信息来调试。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 5,
+          "summary": "API 实际使用 Authorization header 而非 X-API-Key，需要更新脚本。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "复用"
+        },
+        {
+          "num": 6,
+          "summary": "改用 Authorization header 后返回 400 错误，需要检查具体的错误信息。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 7,
+          "summary": "API 要求 location 参数而非 city，需探测正确的参数格式。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 8,
+          "summary": "找到正确参数 location，但返回数据结构与文档不符：字段名为 type/protected_level/era 而非 heritage_type/protection_level/era。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "复用"
+        },
+        {
+          "num": 9,
+          "summary": "查询到 10 条记录，但文档预期是 15 条。需要检查是否有分页或更多参数。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 10,
+          "summary": "",
+          "tools": [],
+          "phase": "探索"
+        }
+      ],
+      "error": "total_count: 期望 15 实际 10"
+    },
+    {
+      "task": 2,
+      "task_file": "task_2_nanjing.md",
+      "name": "查询南京文化遗产",
+      "success": false,
+      "turns": 2,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "南京任务与北京相同，只需修改城市参数为\"南京\"，复用已有的 query_heritage.py 脚本。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "复用"
+        },
+        {
+          "num": 2,
+          "summary": "",
+          "tools": [],
+          "phase": "探索"
+        }
+      ],
+      "error": "total_count: 期望 12 实际 10"
+    },
+    {
+      "task": 3,
+      "task_file": "task_3_chengdu.md",
+      "name": "查询成都文化遗产",
+      "success": false,
+      "turns": 2,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "成都任务与北京/南京相同，可直接调用已知正确的 API 格式查询。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 2,
+          "summary": "",
+          "tools": [],
+          "phase": "探索"
+        }
+      ],
+      "error": "oldest_era: 期望 '金沙遗址' 实际 '都江堰'"
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": false,
+    "t1_turns": 10,
+    "t2_turns": 2,
+    "t3_turns": 2,
+    "reduction_t2_vs_t1_pct": null,
+    "reduction_t3_vs_t1_pct": null,
+    "shows_evolution": false,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 10,
+        "score": 20.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 2,
+        "score": 10.0
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 2,
+        "score": 10.0
+      }
+    },
+    "total": "40.0/60"
+  }
+}

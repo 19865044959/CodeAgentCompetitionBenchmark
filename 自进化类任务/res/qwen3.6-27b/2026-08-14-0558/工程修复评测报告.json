@@ -1,0 +1,157 @@
+{
+  "project": "engineering_fix",
+  "name": "工程修复",
+  "model": "Qwen3.6-27B",
+  "model_id": "qwen3.6-27b",
+  "timestamp": "2026-08-14T06:03:28.954890",
+  "note": "评测模式: REPL (GA cwd=/tmp/自进化类任务/1固定步骤类/2工程修复)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1_alpha.md",
+      "name": "修复应用 alpha 部署",
+      "success": true,
+      "turns": 5,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Let me understand the task: I need to navigate to `ws_1/` di...",
+          "tools": [
+            "file_read",
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 2,
+          "summary": "Reading current workspace state to compare against spec.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 3,
+          "summary": "Found 4 issues: missing logs/alpha/ dir, wrong port, wrong name, wrong permissions on start.sh.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 4,
+          "summary": "All fixes have been applied. Now I need to run `./check` to ...",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 5,
+          "summary": "任务已完成！`./check` 全部通过 (6/6)。",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_2_beta.md",
+      "name": "修复应用 beta 部署",
+      "success": true,
+      "turns": 4,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Follow the same pattern: read spec.md, scan workspace, fix i...",
+          "tools": [
+            "file_read",
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 2,
+          "summary": "Same pattern: 4 issues found. Fixing all at once.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 3,
+          "summary": "All fixes applied, now run check to verify and get TOKEN.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 4,
+          "summary": "任务已完成！`./check` 全部通过 (6/6)。",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_3_gamma.md",
+      "name": "修复应用 gamma 部署",
+      "success": true,
+      "turns": 3,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Same pattern: read spec, scan workspace, fix issues, run check.",
+          "tools": [
+            "file_read",
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 2,
+          "summary": "Same pattern: missing logs/gamma/ dir, wrong port (7777→3000...",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 3,
+          "summary": "任务已完成！`./check` 全部通过 (6/6)。",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 5,
+    "t2_turns": 4,
+    "t3_turns": 3,
+    "reduction_t2_vs_t1_pct": 20,
+    "reduction_t3_vs_t1_pct": 40,
+    "shows_evolution": true,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 5,
+        "score": 20.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 4,
+        "score": 5.0
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 3,
+        "score": 6.7
+      }
+    },
+    "total": "31.7/60"
+  }
+}

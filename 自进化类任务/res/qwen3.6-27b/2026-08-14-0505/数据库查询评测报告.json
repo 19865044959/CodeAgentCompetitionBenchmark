@@ -1,0 +1,140 @@
+{
+  "project": "db_query",
+  "name": "数据库查询",
+  "model": "Qwen3.6-27B",
+  "model_id": "qwen3.6-27b",
+  "timestamp": "2026-08-14T05:16:26.426159",
+  "note": "评测模式: REPL (GA cwd=/tmp/自进化类任务/3数据处理类/1数据库查询)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_c1.md",
+      "name": "2024年违章高发路段统计",
+      "success": false,
+      "turns": 4,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "用户想让我完成一个数据库查询任务。我需要：",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 2,
+          "summary": "找到数据库文件，现在需要探索表结构",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "表结构已明确，现在执行统计查询生成JSON",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 4,
+          "summary": "任务完成，已生成 answer_c1.json",
+          "tools": [],
+          "phase": "通过"
+        }
+      ],
+      "error": "top3_roads[2].road_name: 期望 '中关村大街' 实际 '国贸桥'"
+    },
+    {
+      "task": 2,
+      "task_file": "task_c2.md",
+      "name": "2023年违章高发路段统计",
+      "success": true,
+      "turns": 2,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "任务C2是查询2023年的违章统计，结构与C1相同，直接复用查询逻辑。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "复用"
+        },
+        {
+          "num": 2,
+          "summary": "任务C2已完成，2023年违章统计结果已写入 answer_c2.json。",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_c3.md",
+      "name": "各区域违章与事故综合统计",
+      "success": false,
+      "turns": 4,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "任务C3需要按区域维度汇总2024年的违章和事故数据，生成包含违章次数、事故次数和受伤人数的统计信息。需要执行数据库查询...",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 2,
+          "summary": "查询失败了，因为 `事故记录` 表中没有 `记录id` 字段。我需要先确认 `事故记录` 表的实际字段名。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "发现错误：`事故记录`表的主键列名是`事故id`而非`记录id`。需要修正查询并重试。",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 4,
+          "summary": "已修正字段名并成功查询，结果已写入 answer_c3.json。",
+          "tools": [],
+          "phase": "调试"
+        }
+      ],
+      "error": "district_stats 列表长度 6 != 7"
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": false,
+    "t1_turns": 4,
+    "t2_turns": 2,
+    "t3_turns": 4,
+    "reduction_t2_vs_t1_pct": null,
+    "reduction_t3_vs_t1_pct": null,
+    "shows_evolution": false,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 4,
+        "score": 20.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 2,
+        "score": 10.0
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 4,
+        "score": 5.0
+      }
+    },
+    "total": "35.0/60"
+  }
+}

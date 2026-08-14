@@ -1,0 +1,124 @@
+{
+  "project": "engineering_fix",
+  "name": "工程修复",
+  "model": "Qwen3.6-27B",
+  "model_id": "qwen3.6-27b",
+  "timestamp": "2026-08-14T05:23:35.893887",
+  "note": "评测模式: REPL (GA cwd=/tmp/自进化类任务/1固定步骤类/2工程修复)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1_alpha.md",
+      "name": "修复应用 alpha 部署",
+      "success": true,
+      "turns": 3,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "The user wants me to complete a task defined in task_1_alpha...",
+          "tools": [
+            "file_read",
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 2,
+          "summary": "Let me understand the current state:",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 3,
+          "summary": "Task completed: all 6/6 checks passed, TOKEN obtained.",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_2_beta.md",
+      "name": "修复应用 beta 部署",
+      "success": true,
+      "turns": 3,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Let me read the spec and run the check to understand what ne...",
+          "tools": [
+            "file_read",
+            "code_run"
+          ],
+          "phase": "调试"
+        },
+        {
+          "num": 2,
+          "summary": "Same pattern as task 1, just different values. Let me fix al...",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 3,
+          "summary": "All 6/6 checks passed for beta. Token obtained.",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_3_gamma.md",
+      "name": "修复应用 gamma 部署",
+      "success": true,
+      "turns": 2,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Same pattern as alpha/beta. Applying the same 4 fixes for gamma.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "通过"
+        },
+        {
+          "num": 2,
+          "summary": "## 任务完成 ✅",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 3,
+    "t2_turns": 3,
+    "t3_turns": 2,
+    "reduction_t2_vs_t1_pct": 0,
+    "reduction_t3_vs_t1_pct": 33,
+    "shows_evolution": true,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 3,
+        "score": 20.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 3,
+        "score": 6.7
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 2,
+        "score": 10.0
+      }
+    },
+    "total": "36.7/60"
+  }
+}

@@ -2,13 +2,13 @@
 
 ## 任务背景
 
-环境评估报告的最后一部分，需要补充人口分布数据。请使用 `datatool.py` 查询 **海淀区 2024年** 的人口数据（population dataset）。
+环境评估报告的最后一部分，需要补充人口分布数据。请使用 `datatool.pyc` 查询 **海淀区 2024年** 的人口数据（population dataset）。
 
-（工具与前面相同：`python3 datatool.py`）
+（工具与前面相同：`python3 datatool.pyc`）
 
 ## 任务要求
 
-使用 `python3 datatool.py` 查询海淀区 2024 年的人口数据，提取以下统计信息：
+使用 `python3 datatool.pyc` 查询海淀区 2024 年的人口数据，提取以下统计信息：
 
 ```json
 {
@@ -26,8 +26,9 @@
 
 ## 提交规则
 
-1. 将上述 JSON 写入 `answer_e3.json` 文件
-2. JSON 必须格式正确、字段齐全
+1. 将上述 JSON 写入本任务文件所在目录下的 `answer_e3.json`，完整路径为：`/tmp/自进化类任务/1固定步骤类/3CLI工具/answer_e3.json`
+2. 写文件时必须使用上述绝对路径（或先 `cd` 到该目录再写），不要使用不带路径的相对文件名
+3. JSON 必须格式正确、字段齐全
 
 ## 提示
 

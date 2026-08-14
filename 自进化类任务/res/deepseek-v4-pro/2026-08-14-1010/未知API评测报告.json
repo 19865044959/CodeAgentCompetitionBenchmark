@@ -1,0 +1,178 @@
+{
+  "project": "unknown_api",
+  "name": "未知API",
+  "model": "DeepSeek V4 Pro",
+  "model_id": "deepseek-v4-pro",
+  "timestamp": "2026-08-14T10:13:37.953749",
+  "note": "评测模式: REPL (GA cwd=/tmp/自进化类任务/1固定步骤类/1未知API)",
+  "results": [
+    {
+      "task": 1,
+      "task_file": "task_1_beijing.md",
+      "name": "查询北京文化遗产",
+      "success": true,
+      "turns": 9,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Let me read API_DOCS.md in the same directory.",
+          "tools": [
+            "file_read"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 2,
+          "summary": "Task: query Beijing cultural heritage via API, compute stats, write answer_1.json. API at localhost:8899, need X-API-Key. Docs partially corrupted (query all pagination unknown). Probe API.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "Need URL encode. Use urllib.parse.urlencode or quote.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 4,
+          "summary": "API wants Authorization header, not X-API-Key. Try Bearer token.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 5,
+          "summary": "Auth = Bearer. Param name changed from city to location. Try location=北京.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 6,
+          "summary": "Structure: data.records[], data.pagination{total_count,offset,limit}. total=15, default limit=10. Need pagination param names.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 7,
+          "summary": "limit param accepted; need confirm it returns 15. Write reusable script, fetch full records, compute stats, save answer_1.json.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 8,
+          "summary": "All 15 records fetched. Now compute stats:",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 9,
+          "summary": "",
+          "tools": [],
+          "phase": "探索"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "task_file": "task_2_nanjing.md",
+      "name": "查询南京文化遗产",
+      "success": true,
+      "turns": 3,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Same API, just switch city to 南京. Run reusable script, output answer_2.json.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 2,
+          "summary": "Matches pre-existing answer_南京.json. But cross-verify oldest_era by inspecting actual records.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "验证"
+        },
+        {
+          "num": 3,
+          "summary": "任务完成。已写入 `/tmp/自进化类任务/1固定步骤类/1未知API/answer_2.json`：",
+          "tools": [],
+          "phase": "通过"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "task_file": "task_3_chengdu.md",
+      "name": "查询成都文化遗产",
+      "success": true,
+      "turns": 3,
+      "turns_detail": [
+        {
+          "num": 1,
+          "summary": "Run reusable script for 成都, write answer_3.json, then verify records.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "验证"
+        },
+        {
+          "num": 2,
+          "summary": "Discrepancy: pre-existing answer_成都.json said oldest_era=\"都江堰\", my script says \"金沙遗址\". Inspect actual records.",
+          "tools": [
+            "code_run"
+          ],
+          "phase": "探索"
+        },
+        {
+          "num": 3,
+          "summary": "",
+          "tools": [],
+          "phase": "探索"
+        }
+      ]
+    }
+  ],
+  "self_evolution_analysis": {
+    "all_success": true,
+    "t1_turns": 9,
+    "t2_turns": 3,
+    "t3_turns": 3,
+    "reduction_t2_vs_t1_pct": 67,
+    "reduction_t3_vs_t1_pct": 67,
+    "shows_evolution": true,
+    "scores": {
+      "task1": {
+        "exp": 20,
+        "actual": 9,
+        "score": 20.0
+      },
+      "task2": {
+        "exp": 1,
+        "actual": 3,
+        "score": 6.7
+      },
+      "task3": {
+        "exp": 1,
+        "actual": 3,
+        "score": 6.7
+      }
+    },
+    "total": "33.4/60"
+  }
+}
