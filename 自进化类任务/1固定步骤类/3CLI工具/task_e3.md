@@ -2,7 +2,7 @@
 
 ## 任务背景
 
-环境评估报告的最后一部分，需要补充人口分布数据。请使用 `datatool.pyc` 查询 **海淀区 2024年** 的人口数据（population dataset）。
+环境评估报告的最后一部分，需要补充战后城市的人口分布数据。请使用 `datatool.pyc` 查询 **海淀区 2024年** 的人口数据（population dataset）。
 
 （工具与前面相同：`python3 datatool.pyc`）
 

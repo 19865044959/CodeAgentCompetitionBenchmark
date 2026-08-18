@@ -191,21 +191,21 @@ def verify_q3_location(answer):
     # 检查坐标
     if "target_x" in answer:
         try:
-            if int(answer["target_x"]) == 7:
+            if int(answer["target_x"]) == 3:
                 result["score"] += 8
-                result["details"].append({"field": "target_x", "status": "PASS", "expected": 7, "actual": answer["target_x"]})
+                result["details"].append({"field": "target_x", "status": "PASS", "expected": 3, "actual": answer["target_x"]})
             else:
-                result["details"].append({"field": "target_x", "status": "FAIL", "expected": 7, "actual": answer["target_x"]})
+                result["details"].append({"field": "target_x", "status": "FAIL", "expected": 3, "actual": answer["target_x"]})
         except (ValueError, TypeError):
             result["details"].append({"field": "target_x", "status": "PARSE_ERROR"})
 
     if "target_y" in answer:
         try:
-            if int(answer["target_y"]) == 7:
+            if int(answer["target_y"]) == 3:
                 result["score"] += 8
-                result["details"].append({"field": "target_y", "status": "PASS", "expected": 7, "actual": answer["target_y"]})
+                result["details"].append({"field": "target_y", "status": "PASS", "expected": 3, "actual": answer["target_y"]})
             else:
-                result["details"].append({"field": "target_y", "status": "FAIL", "expected": 7, "actual": answer["target_y"]})
+                result["details"].append({"field": "target_y", "status": "FAIL", "expected": 3, "actual": answer["target_y"]})
         except (ValueError, TypeError):
             result["details"].append({"field": "target_y", "status": "PARSE_ERROR"})
 
@@ -213,7 +213,7 @@ def verify_q3_location(answer):
     if "reasoning" in answer:
         reasoning = normalize_str(str(answer["reasoning"]))
         day1_ref = any(kw in reasoning for kw in ["day1", "day 1", "采药人", "西部", "石门"])
-        day7_ref = any(kw in reasoning for kw in ["day7", "day 7", "猎人", "北七", "东七", "原点"])
+        day7_ref = any(kw in reasoning for kw in ["day7", "day 7", "猎人", "北三", "东三", "原点"])
         if day1_ref and day7_ref:
             result["score"] += 4
             result["details"].append({"field": "reasoning", "status": "PASS", "desc": "使用 Day1 + Day7 双重确认位置"})
@@ -285,8 +285,8 @@ def verify_q4_action_plan(answer):
             seq_text = normalize_str(" ".join(str(s) for s in seq))
             # 检查关键步骤
             has_buy = any(kw in seq_text for kw in ["buy", "购买", "买"])
-            has_move_to_store = any(kw in seq_text for kw in ["武器商店", "weaponstore", "(19,19)"])
-            has_move_to_target = any(kw in seq_text for kw in ["(7,7)", "7,7"])
+            has_move_to_store = any(kw in seq_text for kw in ["武器商店", "weaponstore", "(25,20)"])
+            has_move_to_target = any(kw in seq_text for kw in ["(3,3)", "3,3"])
             has_detect = any(kw in seq_text for kw in ["detect", "探索", "探查"])
 
             checks = [has_buy, has_move_to_store, has_move_to_target, has_detect]
@@ -347,7 +347,7 @@ def verify(answer_path, expected_path=None):
         if q2_result["score"] < q2_result["max_score"] * 0.6:
             diagnostics.append("Q2 物品映射能力不足：GA 无法完成代号→外貌→封印→凹槽→商品的四重映射")
         if q3_result["score"] < q3_result["max_score"] * 0.6:
-            diagnostics.append("Q3 位置推理能力不足：GA 无法从 Day1 方向 + Day7 坐标推导出 (7,7)")
+            diagnostics.append("Q3 位置推理能力不足：GA 无法从 Day1 方向 + Day7 坐标推导出 (3,3)")
         if q4_result["score"] < q4_result["max_score"] * 0.6:
             diagnostics.append("Q4 行动计划能力不足：GA 不知道需要购买三样物品后使用 detect")
 

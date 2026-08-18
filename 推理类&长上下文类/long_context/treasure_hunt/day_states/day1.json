@@ -1,25 +1,101 @@
 {
   "roundNo": 1,
   "mapInfo": {
-    "width": 30,
-    "height": 30,
+    "width": 41,
+    "height": 32,
     "zones": [
-      { "neutralType": "vendor", "pos": { "x": 15, "y": 15 } },
-      { "neutralType": "weaponStore", "pos": { "x": 19, "y": 19 } },
-      { "neutralType": "taskOfficer", "pos": { "x": 11, "y": 11 } },
-      { "neutralType": "iron", "pos": { "x": 25, "y": 10 } },
-      { "neutralType": "stone", "pos": { "x": 4, "y": 24 } },
-      { "neutralType": "copper", "pos": { "x": 22, "y": 26 } }
+      {
+        "neutralType": "vendor",
+        "pos": {
+          "x": 20,
+          "y": 16
+        }
+      },
+      {
+        "neutralType": "weaponStore",
+        "pos": {
+          "x": 25,
+          "y": 20
+        }
+      },
+      {
+        "neutralType": "taskOfficer",
+        "pos": {
+          "x": 15,
+          "y": 12
+        }
+      },
+      {
+        "neutralType": "iron",
+        "pos": {
+          "x": 25,
+          "y": 10
+        }
+      },
+      {
+        "neutralType": "stone",
+        "pos": {
+          "x": 4,
+          "y": 24
+        }
+      },
+      {
+        "neutralType": "copper",
+        "pos": {
+          "x": 22,
+          "y": 26
+        }
+      }
     ]
   },
   "teamOur": {
     "type": "challenger",
     "goldNum": 100,
     "roles": [
-      { "id": 10011, "pos": { "x": 9, "y": 23 }, "roleType": "station", "health": 2000, "attackPower": 0, "attackRange": 0 },
-      { "id": 10015, "pos": { "x": 10, "y": 20 }, "roleType": "worker", "health": 220, "backPackCapability": 100, "backpack": [] },
-      { "id": 10016, "pos": { "x": 9, "y": 21 }, "roleType": "worker", "health": 220, "backPackCapability": 100, "backpack": [] },
-      { "id": 10017, "pos": { "x": 10, "y": 12 }, "roleType": "pioneer", "health": 200, "backPackCapability": 40, "backpack": [] }
+      {
+        "id": 10011,
+        "pos": {
+          "x": 9,
+          "y": 23
+        },
+        "roleType": "station",
+        "health": 2000,
+        "attackPower": 0,
+        "attackRange": 0
+      },
+      {
+        "id": 10015,
+        "pos": {
+          "x": 10,
+          "y": 20
+        },
+        "roleType": "worker",
+        "health": 220,
+        "backPackCapability": 100,
+        "backpack": []
+      },
+      {
+        "id": 10016,
+        "pos": {
+          "x": 9,
+          "y": 21
+        },
+        "roleType": "worker",
+        "health": 220,
+        "backPackCapability": 100,
+        "backpack": []
+      },
+      {
+        "id": 10017,
+        "pos": {
+          "x": 10,
+          "y": 12
+        },
+        "roleType": "pioneer",
+        "health": 200,
+        "backPackCapability": 40,
+        "backpack": []
+      }
     ]
   },
   "worldNews": {
@@ -27,9 +103,18 @@
     "folkLegends": "村里最年长的采药人昨天过世了，活了九十三岁。他孙子在整理遗物时发现了一本发霉的笔记，最后一页潦草地写着：'西部有一石门，门需三钥'下面还画了一个圆圈，圆圈里画了三道杠。家里人看不懂，打算当废纸烧了。南边渡口的船夫抱怨最近水位下降得厉害，船底已经刮了三次礁石了。"
   },
   "vendorShopList": [
-    { "name": "stone", "price": 1 },
-    { "name": "iron", "price": 2 },
-    { "name": "copper", "price": 3 }
+    {
+      "name": "stone",
+      "price": 1
+    },
+    {
+      "name": "iron",
+      "price": 2
+    },
+    {
+      "name": "copper",
+      "price": 3
+    }
   ],
-  "weaponShopList": "古符石板 15g | 星辰之沙 20g | 烈焰之息 25g | 围墙修复包 10g | 生命药剂 10g | 眩晕法宝 20g | 范围炸弹 40g | 小型野兽召唤令 20g | 中型野兽召唤令 20g | 大型野兽召唤令 40g | BOSS召唤令 100g | 寒霜药剂 15g | 荆棘护符 25g | 回音铁哨 20g"
+  "weaponShopList": "古符石板 15g | 星辰之沙 20g | 烈焰之息 25g | 围墙修复包 10g | 生命药剂 10g | 眩晕法宝 20g | 范围炸弹 40g | 小型机器人召唤令 20g | 中型机器人召唤令 20g | 大型机器人召唤令 40g | BOSS召唤令 100g | 寒霜药剂 15g | 荆棘护符 25g | 回音铁哨 20g"
 }

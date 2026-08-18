@@ -59,7 +59,7 @@ def find_price_in_answer(answer_data, day_num):
     if q1_data is None:
         q1_data = answer_data
 
-    # 格式1: 数组 [2, 4, 4, 2]（按天索引）
+    # 格式1: 数组 [2, 2, 8, 8]（按天索引）
     if isinstance(q1_data, list) and len(q1_data) >= day_num:
         try:
             return int(q1_data[day_num - 1])
@@ -153,6 +153,13 @@ def find_numeric_value(answer_data, key_patterns):
     val = deep_find(answer_data, key_patterns)
     if val is None:
         return None
+    if isinstance(val, dict):
+        # 命中的可能是外层键（如 q4_profit_analysis），递归查找数值字段
+        for sub in [["extra_profit"], ["profit"], ["额外利润"], ["amount"], ["value"], ["extra"]]:
+            sub_val = deep_find(val, sub)
+            if sub_val is not None:
+                val = sub_val
+                break
     try:
         if isinstance(val, str):
             # 尝试提取数字
@@ -166,13 +173,13 @@ def find_numeric_value(answer_data, key_patterns):
 
 def verify_q1(answer_data):
     """Q1: 价格预测"""
-    expected = {1: 2, 2: 4, 3: 4, 4: 2}
+    expected = {1: 2, 2: 2, 3: 8, 4: 8}
     score, details = 0, []
 
     for day, exp_price in expected.items():
         actual = find_price_in_answer(answer_data, day)
         if actual is not None and actual == exp_price:
-            weight = 7 if day in [2, 3] else 5
+            weight = 7 if day in [3, 4] else 5
             score += weight
             details.append({"day": day, "status": "PASS", "expected": exp_price, "actual": actual})
         elif actual is not None:
@@ -180,7 +187,7 @@ def verify_q1(answer_data):
         else:
             details.append({"day": day, "status": "NOT_FOUND", "expected": exp_price})
 
-    # Partial credit for gradual model (day2=3, day3=4 is reasonable)
+    # Partial credit for gradual model (day2=3, day3=8 is reasonable)
     if score < 14:  # If not already passing well
         alt_score = 0
         for day, exp_price in expected.items():
@@ -188,13 +195,13 @@ def verify_q1(answer_data):
             if actual is not None:
                 if day == 1 and actual == 2:
                     alt_score += 5
-                elif day in [2, 3] and actual >= 3:  # At least higher than base
+                elif day in [3, 4] and actual >= 3:  # At least higher than base (高价窗口)
                     alt_score += 5
-                elif day == 4 and actual <= 3:  # At least coming back down
+                elif day == 2 and actual <= 3:  # At least knowing Day2 未涨价
                     alt_score += 3
         if alt_score > score:
             score = alt_score
-            details.append({"note": "PARTIAL_CREDIT", "desc": "价格趋势方向正确（涨→跌）但幅度不完全准确"})
+            details.append({"note": "PARTIAL_CREDIT", "desc": "价格趋势方向正确（先平后涨）但幅度不完全准确"})
 
     return {"score": min(score, 25), "max_score": 25, "details": details}
 
@@ -269,8 +276,17 @@ def verify_q3(answer_data):
             if isinstance(item, dict):
                 day_label = str(item.get("day", ""))
                 action = normalize(str(item.get("action", "")))
-                # Day 2 or Day 3: should sell
-                if "2" in day_label or "3" in day_label:
+                # Day 2: still collectible (新闻: 今日抢采), should keep collecting, not sell
+                if "2" in day_label:
+                    if any(kw in action for kw in collect_keywords) and not any(kw in action for kw in sell_keywords):
+                        score += 12
+                        details.append({"status": "PASS", "desc": f"Day{day_label}: 正确继续采集囤积（明日才停采）"})
+                    elif any(kw in action for kw in sell_keywords):
+                        details.append({"status": "FAIL", "desc": f"Day{day_label}: 不应卖出（价格未涨，明日才停采涨价）"})
+                    else:
+                        details.append({"status": "FAIL", "desc": f"Day{day_label}: 未采集（{item.get('action', '')}）"})
+                # Day 3 or Day 4: high-price window, should sell
+                if "3" in day_label or "4" in day_label:
                     if any(kw in action for kw in sell_keywords):
                         score += 12
                         details.append({"status": "PASS", "desc": f"Day{day_label}: 正确卖出"})
@@ -278,11 +294,6 @@ def verify_q3(answer_data):
                         details.append({"status": "FAIL", "desc": f"Day{day_label}: 不应采集（矿区停工）"})
                     else:
                         details.append({"status": "FAIL", "desc": f"Day{day_label}: 未卖出（{item.get('action', '')}）"})
-                # Day 4: should resume normal
-                if "4" in day_label:
-                    if not any(kw in action for kw in sell_keywords):
-                        score += 6
-                        details.append({"status": "PASS", "desc": "Day4正确未大量卖出"})
 
     # 格式2: dict with Day keys {"Day 2": {...}, "Day 3": {...}, ...}
     elif isinstance(q3_data, dict):
@@ -291,13 +302,16 @@ def verify_q3(answer_data):
             if not isinstance(dv, dict):
                 continue
             action = normalize(str(dv.get("action", "")))
-            # Day 2-3 should sell
+            # Day 2: still collectible, should collect & hoard (not sell)
             if "day2" in ndk or "day 2" in ndk or "第二天" in ndk:
-                if any(kw in action for kw in sell_keywords):
+                if any(kw in action for kw in collect_keywords) and not any(kw in action for kw in sell_keywords):
                     score += 12
-                    details.append({"status": "PASS", "desc": f"Day2: 正确卖出"})
+                    details.append({"status": "PASS", "desc": f"Day2: 正确继续采集囤积（明日才停采）"})
+                elif any(kw in action for kw in sell_keywords):
+                    details.append({"status": "FAIL", "desc": f"Day2: 不应卖出（价格未涨）"})
                 else:
-                    details.append({"status": "FAIL", "desc": f"Day2: 未卖出（{dv.get('action', '')}）"})
+                    details.append({"status": "FAIL", "desc": f"Day2: 未采集（{dv.get('action', '')}）"})
+            # Day 3-4: high-price window, should sell
             if "day3" in ndk or "day 3" in ndk or "第三天" in ndk:
                 if any(kw in action for kw in sell_keywords):
                     score += 12
@@ -305,9 +319,11 @@ def verify_q3(answer_data):
                 else:
                     details.append({"status": "FAIL", "desc": f"Day3: 未卖出（{dv.get('action', '')}）"})
             if "day4" in ndk or "day 4" in ndk or "第四天" in ndk:
-                if not any(kw in action for kw in sell_keywords):
-                    score += 6
-                    details.append({"status": "PASS", "desc": "Day4正确恢复正常"})
+                if any(kw in action for kw in sell_keywords):
+                    score += 12
+                    details.append({"status": "PASS", "desc": "Day4: 正确卖出（仍在高价窗口）"})
+                else:
+                    details.append({"status": "FAIL", "desc": f"Day4: 未卖出（{dv.get('action', '')}）"})
 
     return {"score": min(score, 30), "max_score": 30, "details": details}
 
@@ -319,22 +335,22 @@ def verify_q4(answer_data):
     all_text = json.dumps(answer_data, ensure_ascii=False)
     norm_all = normalize(all_text)
 
-    # 利润应该约为2/单位 或 40/20单位
+    # 利润应该约为6/单位 或 120/20单位
     profit_val = find_numeric_value(answer_data, ["extra_profit", "profit", "额外利润", "extra", "利润"])
     if profit_val is not None:
-        if profit_val == 40:
+        if profit_val == 120:
             score += 10
             details.append({"status": "PASS", "desc": f"额外利润正确：{profit_val}"})
-        elif profit_val >= 20:
+        elif profit_val >= 60:
             score += 6
-            details.append({"status": "PARTIAL", "desc": f"额外利润接近正确：{profit_val}（预期40）"})
+            details.append({"status": "PARTIAL", "desc": f"额外利润接近正确：{profit_val}（预期120）"})
         else:
-            details.append({"status": "FAIL", "desc": f"额外利润不正确：{profit_val}（预期40）"})
+            details.append({"status": "FAIL", "desc": f"额外利润不正确：{profit_val}（预期120）"})
     else:
-        # 检查是否提到了4和2的差价
-        if "2金币" in norm_all or "2个金币" in norm_all or "差价2" in norm_all:
+        # 检查是否提到了8和2的差价
+        if "6金币" in norm_all or "6个金币" in norm_all or "差价6" in norm_all:
             score += 5
-            details.append({"status": "PARTIAL", "desc": "提到了价差2金币"})
+            details.append({"status": "PARTIAL", "desc": "提到了价差6金币"})
 
     # 策略描述
     strategy_keywords = ["囤", "collect", "涨价", "高价", "卖", "sell", "差价", "arbitrage"]

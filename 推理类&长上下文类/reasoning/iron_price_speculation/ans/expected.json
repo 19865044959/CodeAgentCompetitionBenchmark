@@ -3,41 +3,41 @@
   "expected_answers": {
     "q1_price_prediction": {
       "day1_price": 2,
-      "day2_price": 4,
-      "day3_price": 4,
-      "day4_price": 2,
+      "day2_price": 2,
+      "day3_price": 8,
+      "day4_price": 8,
       "key_insights": [
-        "Day 1 铁矿仍可采集，价格不变（2金币）",
-        "Day 2-3 铁矿停采，稀缺导致价格翻倍（4金币）",
-        "Day 4 及之后铁矿恢复，价格回归基准（2金币）",
-        "修复需要2天 = Day 2 + Day 3 停工"
+        "Day 1-2 铁矿仍可采集，价格不变（2金币）",
+        "Day 3-4 铁矿停采，稀缺导致价格飙涨至原来的4倍（8金币）",
+        "Day 5 及之后铁矿恢复，价格回归基准（2金币）",
+        "修复需要2天 = Day 3 + Day 4 停工"
       ]
     },
     "q2_hoarding_strategy": {
       "day1_action": "collect_iron",
       "day1_priority": "high",
       "key_insights": [
-        "Day 1 是最后一天可以采集铁矿",
-        "应在 Day 1 尽可能多地采集铁矿（囤积）",
-        "不应在 Day 1 卖出（价格只有2，即将涨到4）",
+        "Day 1-2 是最后可以采集铁矿的日子",
+        "应在 Day 1-2 尽可能多地采集铁矿（囤积）",
+        "不应在涨价前卖出（价格只有2，即将涨到8）",
         "工人应优先采集铁矿而非石头或铜"
       ]
     },
     "q3_selling_strategy": {
-      "day2_action": "sell_all_iron",
+      "day2_action": "collect_iron_keep_hoarding",
       "day3_action": "sell_all_iron",
-      "day4_action": "resume_normal",
+      "day4_action": "sell_all_iron",
       "key_insights": [
-        "Day 2-3 是高价窗口（4金币/单位），应全部卖出",
-        "Day 2 和 Day 3 无法采集新铁矿（矿已停工）",
-        "Day 4 价格回落至2，不应再囤积",
-        "价格恢复后恢复正常采集-卖出节奏"
+        "Day 2 还能抢采（新闻：今天浅层矿面还能抢采），应继续采集囤积",
+        "Day 3-4 是高价窗口（8金币/单位），应全部卖出",
+        "Day 3-4 无法采集新铁矿（矿已停工）",
+        "Day 5 价格回落至2，恢复正常采集-卖出节奏"
       ]
     },
     "q4_profit_analysis": {
-      "max_profit_per_unit": 2,
-      "optimal_strategy_summary": "Day1全力采集铁矿囤积，Day2-3在高价窗口全部卖出（每单位多赚2金币），Day4恢复正常",
-      "calculation": "高价4 - 基准价2 = 2金币/单位额外利润。20单位 × 2 = 40额外金币。对比每天采每天卖：20单位×2=40金币 vs 20单位先囤后在高价卖=80金币"
+      "max_profit_per_unit": 6,
+      "optimal_strategy_summary": "Day1-2全力采集铁矿囤积，Day3-4在高价窗口全部卖出（每单位多赚6金币），Day5恢复正常",
+      "calculation": "高价8 - 基准价2 = 6金币/单位额外利润。20单位 × 6 = 120额外金币。对比每天采每天卖：20单位×2=40金币 vs 20单位先囤后在高价卖=160金币"
     }
   },
   "evaluation_rubric": {
@@ -45,9 +45,9 @@
       "weight": 25,
       "criteria": {
         "day1_price_correct": 5,
-        "day2_price_correct": 8,
+        "day2_price_correct": 5,
         "day3_price_correct": 7,
-        "day4_price_correct": 5
+        "day4_price_correct": 8
       }
     },
     "q2_score": {
@@ -63,8 +63,8 @@
       "criteria": {
         "day2_action_correct": 10,
         "day3_action_correct": 10,
-        "day4_action_correct": 5,
-        "reasoning_mentions_price_window": 5
+        "day4_action_correct": 10,
+        "reasoning_mentions_price_window": 0
       }
     },
     "q4_score": {

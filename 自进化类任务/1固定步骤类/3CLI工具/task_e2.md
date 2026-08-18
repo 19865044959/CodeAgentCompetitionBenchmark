@@ -2,7 +2,7 @@
 
 ## 任务背景
 
-环境评估报告的下一部分，需要补充交通拥堵数据。请使用同一个 `datatool.pyc` 工具，查询 **朝阳区 2024年** 的交通数据（traffic dataset）。
+环境评估报告的下一部分，需要补充战后城市的交通拥堵数据。请使用同一个 `datatool.pyc` 工具，查询 **朝阳区 2024年** 的交通数据（traffic dataset）。
 
 （工具与上一题相同：`python3 datatool.pyc`）
 
